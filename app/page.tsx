@@ -1,68 +1,99 @@
+"use client";
+
 import Image from "next/image";
+import { useEffect, useState } from "react";
+
+type issue = {
+  id: number;
+  apartment: string;
+  category: string;
+  desc: string;
+  date: Date;
+  priority: string;
+  status: string;
+};
 
 export default function Home() {
+  const [issues, setIssues] = useState<issue[]>([
+    {
+      id: 0,
+      apartment: "Malaga Centro 01",
+      category: "Plumbing",
+      desc: "Bathroom sink is leaking",
+      date: new Date("2026-09-15"),
+      priority: "high",
+      status: "pending",
+    },
+    {
+      id: 1,
+      apartment: "Malaga Centro Alameda",
+      category: "Electrical",
+      desc: "Outlet in the kitchen is sparking",
+      date: new Date("2026-09-15"),
+      priority: "high",
+      status: "in progress",
+    },
+    {
+      id: 2,
+      apartment: "Malaga Centro 02",
+      category: "Plumbing",
+      desc: "No water in the kitchen sink",
+      date: new Date("2026-09-15"),
+      priority: "low",
+      status: "resolved",
+    },
+  ]);
+  const [isAddingIssue, setIsAddingIssue] = useState<boolean>(false);
+  const [apartments, setApartments] = useState<string[]>([
+    "Malaga Centro 01",
+    "Malaga Centro Alameda",
+    "Malaga Centro 02",
+  ]);
   return (
     <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+      <main className="flex flex-col bg-white dark:bg-black">
+        <h1 className="font-bold text-2xl">Issues:</h1>
+        <div className="flex justify-center flex-wrap gap-10">
+          {issues.length > 0 ? (
+            issues.map((issue) => (
+              <div
+                key={issue.id}
+                className="relative flex flex-col p-4 border border-slate-500 rounded"
+              >
+                <p
+                  className={`px-2 w-fit text-black font-semibold border rounded ${issue.status === "pending" ? "bg-red-400 border-red-600" : issue.status === "in progress" ? "bg-sky-300 border-sky-500" : issue.status === "resolved" ? "bg-emerald-400 border-emerald-600" : null}`}
+                >
+                  {issue.status}
+                </p>
+                <p className="font-bold text-2xl py-2">{issue.apartment}</p>
+                <p className="italic">{issue.desc}</p>
+                <div className="flex pt-2 gap-2">
+                  <span className="border px-2 py-1 rounded">
+                    {issue.date.toLocaleDateString()}
+                  </span>
+                  <span className="border px-2 py-1 rounded">
+                    {issue.category}
+                  </span>
+                  <span className="border px-2 py-1 rounded">
+                    {issue.priority}
+                  </span>
+                </div>
+              </div>
+            ))
+          ) : (
+            <p className="font-semibold italic text-xl">
+              No issues or none found with specified fileters
+            </p>
+          )}
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+        {!isAddingIssue && (
+          <input
+            type="button"
+            onClick={() => setIsAddingIssue(true)}
+            value="Add issue"
+            className="w-fit px-2 py-1 cursor-pointer border hover:font-semibold rounded transition-all"
+          />
+        )}
       </main>
     </div>
   );
