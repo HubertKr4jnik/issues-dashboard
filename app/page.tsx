@@ -110,18 +110,18 @@ export default function Home() {
 
   return (
     <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <div className="fixed flex justify-between py-3 px-5 w-full top-0 border-b border-slate-500 bg-white dark:bg-black">
-        <div className="flex gap-2">
-          <p className="flex place-items-center gap-2 px-2 w-fit text-black font-semibold border rounded bg-slate-400 border-slate-600">
+      <div className="fixed flex flex-wrap justify-center md:justify-between place-items-center gap-2 py-3 px-5 w-full top-0 border-b border-slate-500 bg-white dark:bg-black">
+        <div className="flex justify-center flex-wrap gap-2">
+          <p className="flex place-items-center text-nowrap gap-2 px-2 w-fit text-black font-semibold border rounded bg-slate-400 border-slate-600">
             All issues: {issues.length}
           </p>
-          <p className="flex place-items-center gap-2 px-2 w-fit text-black font-semibold border rounded bg-red-400 border-red-600">
+          <p className="flex place-items-center text-nowrap gap-2 px-2 w-fit text-black font-semibold border rounded bg-red-400 border-red-600">
             Pending: {pendingIssuesAmount}
           </p>
-          <p className="flex place-items-center gap-2 px-2 w-fit text-black font-semibold border rounded bg-sky-300 border-sky-500">
+          <p className="flex place-items-center text-nowrap gap-2 px-2 w-fit text-black font-semibold border rounded bg-sky-300 border-sky-500">
             In progress: {inProgressIssuesAmount}
           </p>
-          <p className="flex place-items-center gap-2 px-2 w-fit text-black font-semibold border rounded bg-emerald-400 border-emerald-600">
+          <p className="flex place-items-center text-nowrap gap-2 px-2 w-fit text-black font-semibold border rounded bg-emerald-400 border-emerald-600">
             Resolved: {ResolvedIssuesAmount}
           </p>
         </div>
@@ -146,7 +146,7 @@ export default function Home() {
           />
         </div>
       </div>
-      <main className="flex flex-col place-items-center gap-6 bg-white dark:bg-black">
+      <main className="flex flex-col place-items-center gap-6 dark:bg-black">
         {isOverlayVisible && (
           <div className="absolute top-0 left-0 w-full h-screen z-1 bg-[rgba(0,0,0,.5)]"></div>
         )}
