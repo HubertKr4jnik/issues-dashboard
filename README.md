@@ -1,17 +1,17 @@
-# Mateniance Issues Dashboard
+# Maintenance Issues Dashboard
 
 ![project image](https://github.com/HubertKr4jnik/issues-dashboard/blob/master/project-image.png?raw=true)
 
 ## Overview
 
-This is a simple mateniance dashboard that allows you to manage issues with apartments
+This is a simple maintenance dashboard that allows you to manage issues with apartments
 
 Functions of the app include:
 
 - Viewing all issues
 - Adding new issues
 - Changing the status of a selected issue
-- Filtering the shown issues based on apartment, status priority or category
+- Filtering the shown issues based on apartment, status, priority or category
 - Showing basic statistics about the status and amount of issues
 - Persistent data by storing issues in local storage
 - Responsive design
@@ -74,4 +74,4 @@ Then open [http://localhost:3000](http://localhost:3000) in your browser to view
 
 ## Future improvements
 
-While it was not part of the project requirements, a usefull feature would be an option to both edit and delete issues. Changing smaller, repeatable blocks of code into componts would also improve code clarity and readability.
+While it was not part of the project requirements, a useful feature would be an option to both edit and delete issues. Changing smaller, repeatable blocks of code into components would also improve code clarity and readability.
