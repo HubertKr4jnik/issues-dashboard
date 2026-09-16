@@ -62,7 +62,7 @@ export default function IssueCard({
       <p className="italic">{issue.desc}</p>
       <div className="flex pt-2 gap-2">
         <span className="border px-2 py-1 rounded">
-          {issue.date.toLocaleDateString()}
+          {new Date(issue.date).toLocaleDateString()}
         </span>
         <span className="border px-2 py-1 rounded">{issue.category}</span>
         <span className="border px-2 py-1 rounded">{issue.priority}</span>
