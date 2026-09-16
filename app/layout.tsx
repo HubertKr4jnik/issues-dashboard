@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Dashboard - Apartment issues",
+  title: "Dashboard - Apartment mateniance",
   description: "Manage apartment issues",
 };
 
